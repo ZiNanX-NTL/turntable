@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>离线状态 - 转盘抽奖</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        max-width: 400px;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      p {
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+      button {
+        background-color: #4a78e5;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>您当前处于离线状态</h1>
+      <p>转盘抽奖应用需要网络连接才能正常工作。请检查您的网络连接后重试。</p>
+      <button onclick="tryAgain()">重试连接</button>
+    </div>
+    <script>
+      function tryAgain() {
+        window.location.reload()
+      }
+    </script>
+  </body>
+</html>
