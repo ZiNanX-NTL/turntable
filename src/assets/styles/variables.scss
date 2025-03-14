@@ -1,0 +1,94 @@
+// 颜色变量
+$primary-color: #4d54e1;
+$primary-light: #6a70e5;
+$primary-dark: #3840bc;
+
+$secondary-color: #f27059;
+$secondary-light: #ff8f7d;
+$secondary-dark: #d15a46;
+
+$success-color: #52c41a;
+$warning-color: #faad14;
+$error-color: #f5222d;
+$info-color: #1890ff;
+
+// 中性色
+$text-primary: rgba(0, 0, 0, 0.85);
+$text-secondary: rgba(0, 0, 0, 0.65);
+$text-hint: rgba(0, 0, 0, 0.45);
+$text-disabled: rgba(0, 0, 0, 0.25);
+
+$bg-base: #fff;
+$bg-light: #f8f9fa;
+$bg-dark: #f0f2f5;
+$border-color: #e8e8e8;
+
+// 暗色主题
+$dark-bg-base: #121212;
+$dark-bg-light: #1e1e1e;
+$dark-bg-dark: #242424;
+$dark-text-primary: rgba(255, 255, 255, 0.85);
+$dark-text-secondary: rgba(255, 255, 255, 0.65);
+$dark-text-hint: rgba(255, 255, 255, 0.45);
+$dark-border-color: rgba(255, 255, 255, 0.12);
+
+// 断点
+$breakpoint-xs: 320px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-xxl: 1536px;
+
+// 字体
+$font-family-base: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-family-heading: 'Poppins', $font-family-base;
+$font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+  monospace;
+
+// 字体大小
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+
+// 字体粗细
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 圆角
+$border-radius-sm: 2px;
+$border-radius-md: 4px;
+$border-radius-lg: 8px;
+$border-radius-xl: 12px;
+$border-radius-xxl: 16px;
+$border-radius-circle: 50%;
+
+// 阴影
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// 动画
+$transition-fast: 0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow: 0.4s ease;
+
+// Z轴层级
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

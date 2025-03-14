@@ -1,0 +1,59 @@
+/**
+ * 全局装饰背景样式
+ */
+@use './variables.scss' as *;
+
+// 背景装饰样式增强
+.blur-bg-decoration {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1; // 先设置为-1，确保在内容后面
+  animation: pulse 15s ease-in-out infinite alternate;
+
+  // 增加动态呼吸效果
+  @keyframes pulse {
+    0% {
+      transform: scale(1) translate(0, 0);
+      opacity: 0.4;
+    }
+    50% {
+      transform: scale(1.05) translate(-10px, 10px);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(0.95) translate(10px, -10px);
+      opacity: 0.4;
+    }
+  }
+
+  &.primary {
+    background: linear-gradient(135deg, $primary-color, #8957e5);
+  }
+
+  &.secondary {
+    background: linear-gradient(135deg, $secondary-color, #ff9190);
+  }
+
+  &.accent {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+  }
+
+  &.success {
+    background: linear-gradient(135deg, #5cb85c, #28a745);
+  }
+
+  &.warning {
+    background: linear-gradient(135deg, #f0ad4e, #fd7e14);
+  }
+
+  // 慢速动画的装饰背景
+  &.slow {
+    animation-duration: 25s;
+  }
+
+  // 快速动画的装饰背景
+  &.fast {
+    animation-duration: 10s;
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "prizes": [
+    {
+      "id": "1",
+      "name": "一等奖",
+      "probability": 5,
+      "color": "#FF4747",
+      "icon": "",
+      "description": "恭喜获得一等奖！"
+    },
+    {
+      "id": "2",
+      "name": "二等奖",
+      "probability": 10,
+      "color": "#FFAD47",
+      "icon": "",
+      "description": "恭喜获得二等奖！"
+    },
+    {
+      "id": "3",
+      "name": "三等奖",
+      "probability": 15,
+      "color": "#4777FF",
+      "icon": "",
+      "description": "恭喜获得三等奖！"
+    },
+    {
+      "id": "4",
+      "name": "四等奖",
+      "probability": 20,
+      "color": "#47FF83",
+      "icon": "",
+      "description": "恭喜获得四等奖！"
+    },
+    {
+      "id": "5",
+      "name": "参与奖",
+      "probability": 50,
+      "color": "#9747FF",
+      "icon": "",
+      "description": "感谢参与！"
+    }
+  ],
+  "wheelConfig": {
+    "type": "konva",
+    "spinDuration": 5000,
+    "easing": "Power2.easeOut",
+    "radius": 200,
+    "textDistance": 0.75,
+    "textSize": 16,
+    "borderWidth": 5,
+    "borderColor": "#ffffff"
+  },
+  "pointerConfig": {
+    "style": "standard",
+    "position": "top",
+    "size": 40,
+    "color": "#f27059"
+  },
+  "resultConfig": {
+    "showDuration": 3000,
+    "animation": "confetti",
+    "autoClose": true
+  },
+  "soundConfig": {
+    "enabled": true,
+    "volume": 0.7
+  },
+  "presentationConfig": {
+    "background": {
+      "imageUrl": "",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center"
+    }
+  }
+}

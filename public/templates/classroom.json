@@ -1,0 +1,109 @@
+{
+  "prizes": [
+    {
+      "id": "1",
+      "name": "第1组",
+      "probability": 10,
+      "color": "#FF4747",
+      "icon": "",
+      "description": "请第1组回答问题！"
+    },
+    {
+      "id": "2",
+      "name": "第2组",
+      "probability": 10,
+      "color": "#FFAD47",
+      "icon": "",
+      "description": "请第2组回答问题！"
+    },
+    {
+      "id": "3",
+      "name": "第3组",
+      "probability": 10,
+      "color": "#4777FF",
+      "icon": "",
+      "description": "请第3组回答问题！"
+    },
+    {
+      "id": "4",
+      "name": "第4组",
+      "probability": 10,
+      "color": "#47FF83",
+      "icon": "",
+      "description": "请第4组回答问题！"
+    },
+    {
+      "id": "5",
+      "name": "第5组",
+      "probability": 10,
+      "color": "#9747FF",
+      "icon": "",
+      "description": "请第5组回答问题！"
+    },
+    {
+      "id": "6",
+      "name": "第6组",
+      "probability": 10,
+      "color": "#FF47D8",
+      "icon": "",
+      "description": "请第6组回答问题！"
+    },
+    {
+      "id": "7",
+      "name": "第7组",
+      "probability": 10,
+      "color": "#47C4FF",
+      "icon": "",
+      "description": "请第7组回答问题！"
+    },
+    {
+      "id": "8",
+      "name": "第8组",
+      "probability": 10,
+      "color": "#BEFF47",
+      "icon": "",
+      "description": "请第8组回答问题！"
+    },
+    {
+      "id": "9",
+      "name": "教师",
+      "probability": 10,
+      "color": "#FF478B",
+      "icon": "",
+      "description": "老师来回答问题！"
+    },
+    {
+      "id": "10",
+      "name": "全班",
+      "probability": 10,
+      "color": "#47FFDB",
+      "icon": "",
+      "description": "全班一起回答！"
+    }
+  ],
+  "wheelConfig": {
+    "type": "konva",
+    "spinDuration": 4000,
+    "easing": "Power2.easeOut",
+    "radius": 200,
+    "textDistance": 0.75,
+    "textSize": 16,
+    "borderWidth": 5,
+    "borderColor": "#ffffff"
+  },
+  "pointerConfig": {
+    "style": "arrow",
+    "position": "top",
+    "size": 45,
+    "color": "#f27059"
+  },
+  "resultConfig": {
+    "showDuration": 3000,
+    "animation": "stars",
+    "autoClose": false
+  },
+  "soundConfig": {
+    "enabled": true,
+    "volume": 0.7
+  }
+}

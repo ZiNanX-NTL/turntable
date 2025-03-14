@@ -1,0 +1,135 @@
+@use 'sass:color';
+@use './animations.scss' as *;
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
+@forward './reset.scss';
+@forward './animations.scss';
+@forward './variables.scss';
+@forward './mixins.scss';
+@forward './enhancements.scss'; // 导入新的增强样式
+@forward './decorations.scss'; // 新增装饰样式
+
+// 全局滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.dark-mode {
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+// 消除Chrome中输入框的默认样式
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark-mode {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $dark-bg-light inset !important;
+    -webkit-text-fill-color: $dark-text-primary !important;
+  }
+}
+
+// 全局布局类
+.full-page-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  padding: 20px;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+// 高斯模糊背景装饰
+.blur-bg-decoration {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.5;
+  animation: float 8s ease-in-out infinite alternate;
+
+  &.primary {
+    background: linear-gradient(135deg, $primary-color, $primary-light);
+  }
+
+  &.secondary {
+    background: linear-gradient(135deg, $secondary-color, $secondary-light);
+  }
+
+  &.success {
+    background: linear-gradient(
+      135deg,
+      $success-color,
+      color.adjust($success-color, $lightness: 15%)
+    );
+  }
+}
+
+// 卡片样式
+.card-base {
+  background: $bg-base;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  transition:
+    transform $transition-normal,
+    box-shadow $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+
+  .dark-mode & {
+    background: $dark-bg-light;
+  }
+}

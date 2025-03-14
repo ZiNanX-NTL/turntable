@@ -3,42 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#4d54e1" />
     <meta
       name="description"
-      content="转盘抽奖应用，支持自定义概率、奖项、主题和多种无障碍功能"
+      content="高颜值流畅的转盘抽奖工具，适用于课堂教学和活动互动"
     />
-    <meta name="theme-color" content="#4a78e5" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-    <!-- 预加载音效 -->
-    <link rel="prefetch" href="/sounds/spin.mp3" as="audio" />
-    <link rel="prefetch" href="/sounds/win.mp3" as="audio" />
-    <title>转盘抽奖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>幸运转盘 - 高颜值抽奖工具</title>
   </head>
   <body>
     <div id="app"></div>
-    <!-- 无障碍焦点跳过链接 -->
-    <a href="#app" class="skip-link">跳到主内容</a>
     <script type="module" src="/src/main.js"></script>
-    <noscript>
-      <p>抱歉，本应用需要启用 JavaScript 才能正常工作。</p>
-    </noscript>
   </body>
 </html>
-
-<style>
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    padding: 8px;
-    background: #4a78e5;
-    color: white;
-    z-index: 9999;
-  }
-
-  .skip-link:focus {
-    top: 0;
-  }
-</style>

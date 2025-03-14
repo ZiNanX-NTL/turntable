@@ -1,26 +1,23 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import router from './router'
 import App from './App.vue'
 
-// 注册service worker (如果浏览器支持)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((error) => {
-      console.log('Service worker 注册失败:', error)
-    })
-  })
-}
+// 引入UnoCSS
+import 'uno.css'
 
-// 创建Vue应用
+// 创建应用和状态管理
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+
 const app = createApp(App)
-
-// 使用Pinia进行状态管理
-app.use(createPinia())
+app.use(pinia)
+app.use(router)
 
 // 全局错误处理
-app.config.errorHandler = (err, vm, info) => {
-  console.error('全局错误:', err, info)
-  // 可以在这里添加错误上报
+app.config.errorHandler = (err) => {
+  console.error('全局错误:', err)
 }
 
 // 挂载应用
