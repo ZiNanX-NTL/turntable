@@ -10,6 +10,8 @@
         :colors="wheelColors"
         :config="wheelConfig"
         :is-spinning="isSpinning"
+        :target-prize="selectedPrize"
+        :pointer-position="pointerConfig.position"
         @spinning-complete="handleSpinComplete"
       />
 
@@ -96,6 +98,9 @@ const startSound = ref(null)
 const spinningSound = ref(null)
 const resultSound = ref(null)
 const startButtonText = ref('开始抽奖')
+
+// 新增状态变量用于存储选中的奖品
+const selectedPrize = ref(null)
 
 // 使用声音钩子
 const { playSound, stopSound } = useSound()
@@ -250,16 +255,13 @@ const startSpin = async () => {
   vibrate(100)
 
   // 使用概率选择一个奖品
-  const selectedPrize = selectByProbability(props.prizes)
+  selectedPrize.value = selectByProbability(props.prizes)
 
   // 通知父组件开始旋转
-  emit('spin-start', selectedPrize)
+  emit('spin-start', selectedPrize.value)
 
-  // 传递选中的奖品到转盘组件
+  // 确保视图更新后再触发旋转
   await nextTick()
-
-  // 由于WheelLeafer负责旋转动画，这里不需要做额外处理
-  // handleSpinComplete会在转盘旋转结束后被调用
 }
 
 // 处理旋转完成

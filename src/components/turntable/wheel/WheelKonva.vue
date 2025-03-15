@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import Konva from 'konva'
 import gsap from 'gsap'
 import { calculateAngleRanges } from '@/utils/math/probability'
@@ -25,6 +25,15 @@ const props = defineProps({
   isSpinning: {
     type: Boolean,
     default: false,
+  },
+  targetPrize: {
+    type: Object,
+    default: null,
+  },
+  pointerPosition: {
+    type: String,
+    default: 'top',
+    validator: (val) => ['top', 'right', 'bottom', 'left'].includes(val),
   },
 })
 
@@ -66,6 +75,22 @@ const defaultColors = [
   '#FF478B',
   '#47FFDB',
 ]
+
+// 根据指针位置计算基准角度
+const pointerPositionAngle = computed(() => {
+  switch (props.pointerPosition) {
+    case 'top':
+      return 270 // 顶部位置
+    case 'right':
+      return 0 // 右侧位置
+    case 'bottom':
+      return 90 // 底部位置
+    case 'left':
+      return 180 // 左侧位置
+    default:
+      return 270 // 默认顶部位置
+  }
+})
 
 // 生命周期钩子
 onMounted(() => {
@@ -267,28 +292,73 @@ watch(
 watch(
   () => props.isSpinning,
   (value) => {
-    if (value) {
-      spinWheel()
+    if (value && props.targetPrize) {
+      spinWheel(props.targetPrize)
     }
   }
 )
 
 // 执行旋转动画
-const spinWheel = () => {
+const spinWheel = (targetPrize) => {
   if (!wheelGroup.value) return
 
-  // 计算目标角度
-  const selectedIndex = Math.floor(Math.random() * props.prizes.length)
+  // 计算角度区间
   const angleRanges = calculateAngleRanges(props.prizes)
-  const selectedRange = angleRanges[selectedIndex]
 
-  // 计算旋转角度
+  // 找到目标奖品对应的角度范围
+  let selectedRange = null
+  if (targetPrize) {
+    selectedRange = angleRanges.find(
+      (range) =>
+        range.item.id === targetPrize.id || range.item.name === targetPrize.name
+    )
+  }
+
+  // 如果没有找到目标奖品，随机选择一个
+  if (!selectedRange) {
+    const randomIndex = Math.floor(Math.random() * angleRanges.length)
+    selectedRange = angleRanges[randomIndex]
+  }
+
+  // 计算旋转角度 - 确保指针指向目标奖品
   const middleAngle = (selectedRange.startAngle + selectedRange.endAngle) / 2
-  const targetRotation = 360 * 5 + middleAngle
+
+  // 使用计算属性获取指针位置的基准角度
+  const pointerPosition = pointerPositionAngle.value
+
+  // 获取当前实际旋转角度 (不是取模后的值，而是完整的旋转角度)
+  const currentAngle = wheelGroup.value.rotation()
+
+  // 计算指针当前指向的角度（取模后的值，用于确定当前位置）
+  const currentModAngle = currentAngle % 360
+
+  // 计算从当前位置旋转到目标位置需要的角度
+  // 目标位置：pointerPosition - middleAngle
+  // 确保旋转方向是顺时针（角度增加）
+  let angleToTarget = pointerPosition - middleAngle - currentModAngle
+
+  // 确保是正向旋转（顺时针），如果计算结果为负，则加上360度
+  if (angleToTarget < 0) {
+    angleToTarget += 360
+  }
+
+  // 最小旋转圈数确保每次至少旋转8圈
+  const minSpinsInDegrees = 8 * 360
+
+  // 总旋转角度 = 当前角度 + 要转的角度 + 最小圈数
+  const targetRotation = currentAngle + angleToTarget + minSpinsInDegrees
+
+  // 在目标奖品区域内添加一点随机偏移，使结果不那么机械
+  const angleDiff = selectedRange.endAngle - selectedRange.startAngle
+  // 限制随机偏移范围在奖品区域的中间80%，避免太靠近边缘
+  const randomOffset = (Math.random() * 0.8 - 0.4) * angleDiff * 0.5
+
+  // 最终目标角度
+  const finalTargetRotation = targetRotation + randomOffset
 
   // 使用GSAP执行动画
   gsap.to(wheelGroup.value, {
-    rotation: currentRotation.value + targetRotation,
+    rotation: finalTargetRotation,
     duration: wheelConfig.spinDuration / 1000,
     ease: wheelConfig.easing,
     onUpdate: () => {
@@ -297,7 +367,7 @@ const spinWheel = () => {
     },
     onComplete: () => {
       currentRotation.value = wheelGroup.value.rotation() % 360
-      emit('spinning-complete', props.prizes[selectedIndex])
+      emit('spinning-complete', selectedRange.item)
     },
   })
 }
